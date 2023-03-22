@@ -1,4 +1,4 @@
-public class DoublyLinkedList<T extends Comparable<T>> {
+public class DoublyLinkedList<T> {
     private DoublyLink<T> first;
     private DoublyLink<T> last;
 
@@ -114,7 +114,7 @@ public class DoublyLinkedList<T extends Comparable<T>> {
         System.out.print("List (last-->first): ");
         DoublyLink<T> current = last;
         while(current != null) {
-            current.displayLink(); 
+            System.out.println(current.getData());
             current = current.previous; 
         }
         System.out.println("");
@@ -139,41 +139,6 @@ public class DoublyLinkedList<T extends Comparable<T>> {
         }
         return count;
     }
-
-    public void insertOrdered(T value, boolean ascending) {
-        DoublyLink<T> newLink = new DoublyLink<>(value);
-    
-        if (isEmpty()) {
-            first = newLink;
-            last = newLink;
-            return;
-        }
-    
-        DoublyLink<T> current = first;
-        while (current != null) {
-            int cmp = value.compareTo(current.data);
-            if ((ascending && cmp < 0) || (!ascending && cmp > 0)) {
-                if (current == first) {
-                    first.previous = newLink;
-                    newLink.next = first;
-                    first = newLink;
-                } else {
-                    newLink.previous = current.previous;
-                    current.previous.next = newLink;
-                    newLink.next = current;
-                    current.previous = newLink;
-                }
-                return;
-            }
-            current = current.next;
-        }
-
-        newLink.previous = last;
-        last.next = newLink;
-        last = newLink;
-    }
-    
-    
 
     public boolean updateNode(T oldData, T newData) {
         DoublyLink<T> current = first;
