@@ -11,6 +11,10 @@ public class DataSet {
         movies = new DoublyLinkedList<Movie>();
     }
 
+    public DoublyLinkedList<Movie> getMovies() {
+        return movies;
+    }
+
     private void addMovie(Movie m){
         movies.insertLast(m);
     }
@@ -25,7 +29,7 @@ public class DataSet {
                 String title = movieData[0];
                 int year = Integer.parseInt(movieData[1]);
                 double score = Double.parseDouble(movieData[2]);
-                double metascore = Double.parseDouble(movieData[3]);
+                int metascore = Integer.parseInt(movieData[3]);
                 String genre = movieData[4];
                 int vote = Integer.parseInt(movieData[5]);
                 String director = movieData[6];

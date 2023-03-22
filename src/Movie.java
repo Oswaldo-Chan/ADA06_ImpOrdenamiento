@@ -1,16 +1,18 @@
 public class Movie {
     private String title;
     private String genre;
+    private String director;
     private int year;
     private int runtime;
     private int vote;
     private double score;
-    private double metascore;
+    private int metascore;
     private double revenue;
 
-    public Movie(String t, String g, int y, int rt, int v, double s, double m, double r){
+    public Movie(String t, String g, String d, int y, int rt, int v, double s, int m, double r){
         this.title = t;
         this.genre = g;
+        this.director = d;
         this.year = y;
         this.runtime = rt;
         this.vote = v;
@@ -25,6 +27,10 @@ public class Movie {
 
     public String getGenre() {
         return genre;
+    }
+
+    public String getDirector() {
+        return director;
     }
 
     public int getYear() {
@@ -43,7 +49,7 @@ public class Movie {
         return score;
     }
 
-    public double getMetascore() {
+    public int getMetascore() {
         return metascore;
     }
 
