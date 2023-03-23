@@ -16,16 +16,14 @@ public class Controlador {
 
     public void ordenar(int col, int ordenamiento, boolean ascendente) {
         this.array = createArray(movies, col);
-
+        
         switch(ordenamiento) {
            case 1:
                 this.array = binaryInsertion.binaryInsertionSort(array,col);
             case 2:
                 this.array= MergeSort.mergeSort(array,col);
-
             case 3:
                 this.array= QuickSort.quickSort(array, 0, array.length - 1, col);
-
             case 4:
                 this.array= RadixSort.radix(array, col);
         }
