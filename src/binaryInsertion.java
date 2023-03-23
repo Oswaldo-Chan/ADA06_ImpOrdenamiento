@@ -1,11 +1,9 @@
 public class binaryInsertion {
     private long duration;
-    private int
 
     public long getDuration(){
         return duration;
     }
-
 
     public Movie[] binaryInsertionSort(Movie[] arr,int col) {
         long startTime = System.nanoTime();

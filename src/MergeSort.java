@@ -1,8 +1,9 @@
 import java.util.Arrays;
 
 public class MergeSort {
+    
 
-    public static Movie[] mergeSort(Movie[] arr, int col) {
+    public Movie[] mergeSort(Movie[] arr, int col) {
         int n = arr.length;
     
         if (n <= 1) {

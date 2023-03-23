@@ -19,7 +19,9 @@ public class Controlador {
         
         switch(ordenamiento) {
            case 1:
-                this.array = binaryInsertion.binaryInsertionSort(array,col);
+           binaryInsertion bin = new binaryInsertion();
+                this.array = bin.binaryInsertionSort(array,col);
+                 long duracion = bin.getDuration();
             case 2:
                 this.array= MergeSort.mergeSort(array,col);
             case 3:
