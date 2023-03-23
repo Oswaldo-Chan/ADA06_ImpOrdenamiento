@@ -1,4 +1,4 @@
-public class radixSort {
+public class RadixSort {
 
     public static Movie[] radix(Movie[] arr,int col) {
         int maxScore = getMaxScore(arr,col);

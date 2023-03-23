@@ -27,7 +27,7 @@ public class Controlador {
                 this.array= QuickSort.quickSort(array, 0, array.length - 1, col);
 
             case 4:
-                this.array= radixSort.radix(array, col);
+                this.array= RadixSort.radix(array, col);
         }
         update();
         System.out.println("Se ordeno con exito");
