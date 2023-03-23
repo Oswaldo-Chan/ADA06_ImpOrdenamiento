@@ -93,28 +93,22 @@ public class Movie {
         this.year = year;
     }
 
-    public String getByID(int id) {
+    public int getByID(int id) {
         switch(id) {
             case 0:
-                return getTitle();
+                return year;
             case 1:
-                return getGenre();
+                return runtime;
             case 2:
-                return getDirector();
+                return vote;
             case 3:
-                return String.valueOf(getYear());
+                return (int) score;
             case 4:
-                return String.valueOf(getRuntime());
+                return metascore;
             case 5:
-                return String.valueOf(getVote());
-            case 6:
-                return String.valueOf(getScore());
-            case 7:
-                return String.valueOf(getMetascore());
-            case 8:
-                return String.valueOf(getRevenue());
+                return (int) revenue;
             default:
-                return null;
+                return year;
         }
     }
 

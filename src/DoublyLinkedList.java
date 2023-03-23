@@ -7,6 +7,10 @@ public class DoublyLinkedList<T> {
         last = null;
     }
 
+    public void setFirst(DoublyLink<T> f){
+        this.first=f;
+    }
+
     //Methods
 
     public boolean isEmpty() { 
