@@ -1,9 +1,14 @@
 import java.util.Arrays;
 
 public class MergeSort {
+    private long duration;
     
+    public long getDuration(){
+        return duration;
+    }
 
     public Movie[] mergeSort(Movie[] arr, int col) {
+        long startTime = System.nanoTime();
         int n = arr.length;
     
         if (n <= 1) {
@@ -18,6 +23,8 @@ public class MergeSort {
         right = mergeSort(right,col);
     
         return merge(left, right,col);
+        long endTime = System.nanoTime();
+        this.duration = endTime - startTime;
     }
     
     public static Movie[] merge(Movie[] left, Movie[] right,int col) {

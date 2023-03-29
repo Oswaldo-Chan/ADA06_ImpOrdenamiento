@@ -2,6 +2,7 @@
 public class Controlador {
     DoublyLinkedList<Movie> movies;
     Movie[] array;
+    long[] durations;
 
 
     public Controlador(){
@@ -21,9 +22,11 @@ public class Controlador {
            case 1:
            binaryInsertion bin = new binaryInsertion();
                 this.array = bin.binaryInsertionSort(array,col);
-                 long duracion = bin.getDuration();
+                durations.add(bin.getDuration());
             case 2:
-                this.array= MergeSort.mergeSort(array,col);
+            MergeSort mer = new MergeSort();
+                this.array = mer.mergeSort(array,col);
+                long duracion = mer.getDuration();
             case 3:
                 this.array= QuickSort.quickSort(array, 0, array.length - 1, col);
             case 4:
