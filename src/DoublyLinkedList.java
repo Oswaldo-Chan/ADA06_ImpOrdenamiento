@@ -238,5 +238,13 @@ public class DoublyLinkedList<T> {
         }
         return -1;
     }
+
+    public void setFirst(DoublyLink<T> first) {
+        this.first = first;
+    }
+
+    public void setLast(DoublyLink<T> last) {
+        this.last = last;
+    }
     
 } 

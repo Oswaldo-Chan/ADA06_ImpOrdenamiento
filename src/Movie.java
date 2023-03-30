@@ -95,24 +95,18 @@ public class Movie {
 
     public String getByID(int id) {
         switch(id) {
-            case 0:
-                return getTitle();
             case 1:
-                return getGenre();
+                return getGenre().toLowerCase();
             case 2:
-                return getDirector();
-            case 3:
                 return String.valueOf(getYear());
-            case 4:
+            case 3:
                 return String.valueOf(getRuntime());
-            case 5:
+            case 4:
                 return String.valueOf(getVote());
-            case 6:
+            case 5:
                 return String.valueOf(getScore());
-            case 7:
+            case 6:
                 return String.valueOf(getMetascore());
-            case 8:
-                return String.valueOf(getRevenue());
             default:
                 return null;
         }
