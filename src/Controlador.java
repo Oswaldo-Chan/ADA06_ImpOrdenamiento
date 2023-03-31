@@ -15,22 +15,20 @@ public class Controlador {
     }
 
     public void ordenar(int col, int ordenamiento, boolean ascendente) {
-        this.array = createArray(movies, col);
+        //this.array = createArray(movies, col);
         
         switch(ordenamiento) {
            case 1:
-           binaryInsertion bin = new binaryInsertion();
-                this.array = bin.binaryInsertionSort(array,col);
-                 long duracion = bin.getDuration();
+           binaryInsertion bin = new binaryInsertion(movies,col,ascendente);
+           movies=bin.sortedList;
             case 2:
-                this.array= MergeSort.mergeSort(array,col);
+
             case 3:
-                this.array= QuickSort.quickSort(array, 0, array.length - 1, col);
+
             case 4:
-                this.array= RadixSort.radix(array, col);
+            QuickSort quick = new QuickSort(movies,col,ascendente);
+            movies=quick.sortedList;
         }
-        update();
-        System.out.println("Se ordeno con exito");
     }
 
     public void crear(String name) {
@@ -43,11 +41,11 @@ public class Controlador {
         DoublyLink<Movie> actual = lista.getFirst();
     
         while (actual != null) {
-    
             tamaño++;
             actual = actual.next;
-    
         }
+
+        
         Movie[] array = new Movie[tamaño];
     
         actual = lista.getFirst();
