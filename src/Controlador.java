@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 public class Controlador {
     DoublyLinkedList<Movie> movies;
     DoublyLinkedList<Movie> moviesOrdenados;
-    Movie[] array;
 
     binaryInsertion bin;
     QuickSort quick;

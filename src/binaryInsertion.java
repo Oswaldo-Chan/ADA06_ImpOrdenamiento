@@ -28,6 +28,7 @@ public class binaryInsertion {
                 low = mid + 1;
             else
                 high = mid - 1;
+            comparisons++;
         }
         return low;
     }
@@ -48,6 +49,7 @@ public class binaryInsertion {
             while (j >= loc) {
                 list.index(j + 1).data = list.index(j).getData();
                 j--;
+                swaps++;
             }
             list.index(j + 1).data = selected;
         }
