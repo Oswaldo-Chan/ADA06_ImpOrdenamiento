@@ -27,8 +27,6 @@ public class Controlador {
             case 1:
                 this.bin = new binaryInsertion(movies, col, ascendente);
                 moviesOrdenados = bin.sortedList;
-                System.out.println(bin.getComparisons()+" comparacionesbin");
-                System.out.println(bin.getSwaps()+" swapsbin");
                 break;
             case 2:
             
@@ -39,8 +37,6 @@ public class Controlador {
             case 4:
                 this.quick = new QuickSort(movies, col, ascendente);
                 moviesOrdenados = quick.sortedList;
-                System.out.println(quick.getSwaps()+" swapsquick");
-                System.out.println(quick.getComparisons()+  " comparacionesquick");
                 break;
         }
     }
@@ -53,10 +49,10 @@ public class Controlador {
 
         String[][] datos = {
                 { "Algoritmo", "   Tiempo", " Comparaiones "," Swaps" },
-                { "BinaryInserion: ",String.valueOf(bin.getTime()), String.valueOf(bin.getComparisons()),String.valueOf(bin.getSwaps()) },
+                { "BinaryInserion: ",String.valueOf(bin.getTime()+"   "), String.valueOf(bin.getComparisons()),String.valueOf(bin.getSwaps()) },
                 { "MergeSort:      ", String.valueOf(bin.getTime()), String.valueOf(bin.getTime()),String.valueOf(bin.getTime())},
                 { "RadixSort:      ", String.valueOf(bin.getTime()), String.valueOf(bin.getTime()),String.valueOf(bin.getTime())},
-                { "QuickSort:      ", String.valueOf(quick.getTime()), String.valueOf(quick.getComparisons()),String.valueOf(quick.getSwaps())}
+                { "QuickSort:      ", String.valueOf(quick.getTime()+"   "), String.valueOf(quick.getComparisons()),String.valueOf(quick.getSwaps())}
         };
 
         try (PrintWriter pw = new PrintWriter(new FileWriter("dataset/Algoritmos.txt"))) {

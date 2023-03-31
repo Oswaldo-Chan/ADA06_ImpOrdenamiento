@@ -5,9 +5,9 @@ public class MoviesApp {
 
 
         control.leer("dataset/movies.csv");
-        control.ordenar(0,4,true);
+        control.ordenar(0,1,true);
+        control.ordenar(0, 4, false);
         control.crear("dataset/movies2.csv");
-        control.ordenar(0, 1, false);
         control.generarTabla();
 
     }
