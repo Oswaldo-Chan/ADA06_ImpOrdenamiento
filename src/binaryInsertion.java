@@ -1,8 +1,8 @@
 public class binaryInsertion {
     DoublyLinkedList<Movie> sortedList;
-    long time;
-    int comparisons=0;
-    int swaps=0;
+    private long time;
+    private long comparisons=0;
+    private long swaps=0;
 
     public binaryInsertion(DoublyLinkedList<Movie> movies, int column, boolean creciente){
         this.sortedList = movies;
@@ -53,6 +53,22 @@ public class binaryInsertion {
             }
             list.index(j + 1).data = selected;
         }
+    }
+
+    public DoublyLinkedList<Movie> getSortedList() {
+        return sortedList;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public long getComparisons() {
+        return comparisons;
+    }
+
+    public long getSwaps() {
+        return swaps;
     }
 
 }
