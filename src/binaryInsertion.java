@@ -1,14 +1,12 @@
 public class binaryInsertion {
     DoublyLinkedList<Movie> sortedList;
     long time;
-    int comparisons;
-    int swaps;
+    int comparisons=0;
+    int swaps=0;
 
     public binaryInsertion(DoublyLinkedList<Movie> movies, int column, boolean creciente){
         this.sortedList = movies;
         this.time = sort(column, creciente);
-        this.comparisons = 0;
-        this.swaps = 0;
     }
 
     public long sort(int column, boolean creciente){

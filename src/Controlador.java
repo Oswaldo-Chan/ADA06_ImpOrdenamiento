@@ -1,10 +1,18 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Controlador {
     DoublyLinkedList<Movie> movies;
+    DoublyLinkedList<Movie> moviesOrdenados;
     Movie[] array;
 
+    binaryInsertion bin;
+    QuickSort quick;
+    //RadixSprt radix;
+    //MergeSort merge;
 
-    public Controlador(){
+    public Controlador() {
         movies = new DoublyLinkedList<Movie>();
     }
 
@@ -15,54 +23,44 @@ public class Controlador {
     }
 
     public void ordenar(int col, int ordenamiento, boolean ascendente) {
-        //this.array = createArray(movies, col);
-        
-        switch(ordenamiento) {
-           case 1:
-           binaryInsertion bin = new binaryInsertion(movies,col,ascendente);
-           movies=bin.sortedList;
+
+        switch (ordenamiento) {
+            case 1:
+                this.bin = new binaryInsertion(movies, col, ascendente);
+                moviesOrdenados = bin.sortedList;
             case 2:
 
             case 3:
 
             case 4:
-            QuickSort quick = new QuickSort(movies,col,ascendente);
-            movies=quick.sortedList;
+                this.quick = new QuickSort(movies, col, ascendente);
+                moviesOrdenados = quick.sortedList;
         }
     }
 
     public void crear(String name) {
-    DataSet.newDataset(movies, name);
+        DataSet.newDataset(moviesOrdenados, name);
     }
 
-    public static Movie[] createArray(DoublyLinkedList<Movie> lista, int col) {
+    public void generarTabla() {
 
-        int tamaño = 0;
-        DoublyLink<Movie> actual = lista.getFirst();
-    
-        while (actual != null) {
-            tamaño++;
-            actual = actual.next;
-        }
+        String[][] datos = {
+                { "Algoritmo", "   Tiempo", " Comparaiones "," Swaps" },
+                { "BinaryInserion: ",String.valueOf(bin.time), String.valueOf(bin.comparisons),String.valueOf(bin.swaps) },
+                { "MergeSort:      ", String.valueOf(bin.time), String.valueOf(bin.time),String.valueOf(bin.time)},
+                { "RadixSort:      ", String.valueOf(bin.time), String.valueOf(bin.time),String.valueOf(bin.time)},
+                { "QuickSort:      ", String.valueOf(quick.getTime()), String.valueOf(quick.getComparisons()),String.valueOf(quick.getSwaps())}
+        };
 
-        
-        Movie[] array = new Movie[tamaño];
-    
-        actual = lista.getFirst();
-        
-        for (int i = 0; i < tamaño; i++) {
-            array[i] = actual.getData();
-            actual = actual.next;
-        }
-    
-        return array;
-    }
+        try (PrintWriter pw = new PrintWriter(new FileWriter("dataset/Algoritmos.txt"))) {
 
-    public void update(){
-       this.movies.clear();
+            for (String[] fila : datos) {
+                pw.printf("%-10s%-10s%-10s%-10s%n", fila[0], fila[1], fila[2],fila[3]);
+            }
 
-        for (Movie objeto : array) {
-            this.movies.insertLast(objeto);
+        } catch (IOException e) {
+            System.err.println(e);
+            e.printStackTrace();
         }
     }
 }
