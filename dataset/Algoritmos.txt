@@ -1,5 +1,0 @@
-Algoritmo    Tiempo  Comparaiones  Swaps    
-BinaryInserion: 927246001   39815     26819957  
-MergeSort:      927246001 927246001 927246001 
-RadixSort:      927246001 927246001 927246001 
-QuickSort:      2278906700   49995000  50004999  

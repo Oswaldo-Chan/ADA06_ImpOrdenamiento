@@ -1,8 +1,8 @@
 public class QuickSort {
     DoublyLinkedList<Movie> sortedList;
     private long time;
-    private long comparisons=0;
-    private long swaps=0;
+    private long comparisons;
+    private long swaps;
 
     public QuickSort(DoublyLinkedList<Movie> movies, int column, boolean creciente){
         this.sortedList = movies;
@@ -32,7 +32,7 @@ public class QuickSort {
         int i = left - 1;
     
         for (int j = left; j < right; j++) {
-            if (arr.index(j).getData().getByID(col) <= pivot) {
+            if (arr.index(j).getData().getByID(col) >= pivot) {
                 i++;
                 swap(arr, i, j);
                 this.comparisons++;

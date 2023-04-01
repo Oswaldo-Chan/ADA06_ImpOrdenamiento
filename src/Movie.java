@@ -95,18 +95,14 @@ public class Movie {
 
     public int getByID(int id) {
         switch(id) {
-            case 0:
-                return year;
             case 1:
-                return runtime;
+                return year;
             case 2:
-                return vote;
+                return runtime;
             case 3:
-                return (int) score;
+                return vote;
             case 4:
                 return metascore;
-            case 5:
-                return (int) revenue;
             default:
                 return year;
         }

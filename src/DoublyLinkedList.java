@@ -24,18 +24,6 @@ public class DoublyLinkedList<T> {
         return first == null;
     }
 
-    /* 
-    public void insertFirst(T data) { //inserta un nodo al principio
-        DoublyLink<T> newLink = new DoublyLink<>(data);
-        if (isEmpty()) {
-            last = newLink;
-        } else {
-            first.previous = newLink;
-        }
-        newLink.next = first;
-        first = newLink;
-        index.put(index.size(), newLink);
-    }*/
 
     public void insertLast(T data) { //inserta un nodo al final
         DoublyLink<T> newLink = new DoublyLink<>(data);
