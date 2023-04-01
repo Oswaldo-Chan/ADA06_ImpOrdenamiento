@@ -1,10 +1,21 @@
+import java.util.HashMap;
+
 public class DoublyLinkedList<T> {
     private DoublyLink<T> first;
     private DoublyLink<T> last;
+    HashMap<Integer, DoublyLink<T>> index = new HashMap<>();
+
+    public DoublyLink<T> index(int index) {
+        return this.index.get(index); // obtener el nodo correspondiente al índice
+    }
 
     public DoublyLinkedList() {
         first = null;
         last = null;
+    }
+
+    public void setFirst(DoublyLink<T> f){
+        this.first=f;
     }
 
     //Methods
@@ -13,16 +24,6 @@ public class DoublyLinkedList<T> {
         return first == null;
     }
 
-    public void insertFirst(T data) { //inserta un nodo al principio
-        DoublyLink<T> newLink = new DoublyLink<>(data);
-        if (isEmpty()) {
-            last = newLink;
-        } else {
-            first.previous = newLink;
-        }
-        newLink.next = first;
-        first = newLink;
-    }
 
     public void insertLast(T data) { //inserta un nodo al final
         DoublyLink<T> newLink = new DoublyLink<>(data);
@@ -33,6 +34,7 @@ public class DoublyLinkedList<T> {
             newLink.previous = last;
         }
         last = newLink;
+        index.put(index.size(), newLink);
     }
 
     public DoublyLink<T> deleteFirst() { //elimina el primer nodo
@@ -237,14 +239,6 @@ public class DoublyLinkedList<T> {
             current = current.next;
         }
         return -1;
-    }
-
-    public void setFirst(DoublyLink<T> first) {
-        this.first = first;
-    }
-
-    public void setLast(DoublyLink<T> last) {
-        this.last = last;
     }
     
 } 

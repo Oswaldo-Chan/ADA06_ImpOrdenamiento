@@ -8,16 +8,16 @@ public class RadixSort {
         sortedList = new DoublyLinkedList<>();
     }
 
-    public RadixSort(DoublyLinkedList<Movie> movies, int column, boolean creciente){
+    public RadixSort(DoublyLinkedList<Movie> movies, int column, boolean increasing){
         this.sortedList = movies;
-        this.time = sort(column, creciente);;
+        this.time = sort(column, increasing);;
         this.comparisons = 0;
         this.swaps = 0;
     }
 
-    public long sort(int column, boolean creciente){
+    public long sort(int column, boolean increasing){
         long startTime = System.nanoTime();
-        radixSort(column, creciente);
+        radixSort(column, increasing);
         long endTime = System.nanoTime();
 
         return endTime - startTime;
@@ -28,8 +28,8 @@ public class RadixSort {
         int max = Integer.MIN_VALUE;
         DoublyLink<Movie> current = sortedList.getLast();
         while(current != null) {
-            if (Integer.valueOf(current.getData().getByID(column)) > max) {
-                max = Integer.valueOf(current.getData().getByID(column));
+            if (current.getData().getByID(column) > max) {
+                max = current.getData().getByID(column);
             }
             current = current.previous; 
         }
@@ -37,17 +37,17 @@ public class RadixSort {
         
     }
 
-    private void countingSort( int max, int column, boolean creciente) {
+    private void countingSort( int max, int column, boolean increasing) {
         int[] count = new int[max + 1];
 
         DoublyLink<Movie> current = sortedList.getFirst();
 
         while (current != null) {
-            count[Integer.valueOf(current.getData().getByID(column))]++;
+            count[current.getData().getByID(column)]++;
             current = current.next;
         }
 
-        if (creciente == true) {
+        if (increasing == true) {
             for (int i = 1; i <= max; i++) {
                 count[i] += count[i - 1];
             }
@@ -61,9 +61,9 @@ public class RadixSort {
 
         current = sortedList.getFirst();
         while (current != null) {
-            int index = count[Integer.valueOf(current.getData().getByID(column))] - 1;
+            int index = count[current.getData().getByID(column)] - 1;
             sortedArray[index] = current.getData();
-            count[Integer.valueOf(current.getData().getByID(column))]--;
+            count[current.getData().getByID(column)]--;
             current = current.next;
         }
 
@@ -74,11 +74,11 @@ public class RadixSort {
         }
     }
 
-    private void radixSort(int column, boolean creciente){
+    private void radixSort(int column, boolean increasing){
 		int m = getMax(column);
 
 		for (int exp = 1; m / exp > 0; exp *= 10){
-            countingSort(m, column, creciente);
+            countingSort(m, column, increasing);
         }
 	}
 
@@ -100,4 +100,3 @@ public class RadixSort {
 
 
 }
-
