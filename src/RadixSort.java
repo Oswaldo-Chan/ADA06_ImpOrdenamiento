@@ -1,49 +1,102 @@
 public class RadixSort {
+    private DoublyLinkedList<Movie> sortedList;
+    private long time;
+    private int comparisons;
+    private int swaps;
 
-    public static Movie[] radix(Movie[] arr,int col) {
-        int maxScore = getMaxScore(arr,col);
-    
-        for (int exp = 1; maxScore / exp > 0; exp *= 10) {
-            countingSort(arr, exp,col);
-        }
-    
-        return arr;
+    public RadixSort(){
+        sortedList = new DoublyLinkedList<>();
     }
-    
-    public static int getMaxScore(Movie[] arr, int col) {
-        int maxScore = Integer.MIN_VALUE;
-    
-        for (Movie movie : arr) {
-            if (movie.getByID(col) > maxScore) {
-                maxScore = movie.getByID(col);
+
+    public RadixSort(DoublyLinkedList<Movie> movies, int column, boolean increasing){
+        this.sortedList = movies;
+        this.time = sort(column, increasing);;
+        this.comparisons = 0;
+        this.swaps = 0;
+    }
+
+    public long sort(int column, boolean increasing){
+        long startTime = System.nanoTime();
+        radixSort(column, increasing);
+        long endTime = System.nanoTime();
+
+        return endTime - startTime;
+    }
+
+    private int getMax(int column){
+        
+        int max = Integer.MIN_VALUE;
+        DoublyLink<Movie> current = sortedList.getLast();
+        while(current != null) {
+            if (current.getData().getByID(column) > max) {
+                max = current.getData().getByID(column);
+            }
+            current = current.previous; 
+        }
+        return max;
+        
+    }
+
+    private void countingSort( int max, int column, boolean increasing) {
+        int[] count = new int[max + 1];
+
+        DoublyLink<Movie> current = sortedList.getFirst();
+
+        while (current != null) {
+            count[current.getData().getByID(column)]++;
+            current = current.next;
+        }
+
+        if (increasing == true) {
+            for (int i = 1; i <= max; i++) {
+                count[i] += count[i - 1];
+            }
+        } else {
+            for (int i = max; i >= 1; i--) {
+                count[i - 1] += count[i];
             }
         }
-    
-        return maxScore;
-    }
-    
-    public static void countingSort(Movie[] arr, int exp,int col) {
-        int n = arr.length;
-        int[] count = new int[10];
-        Movie[] output = new Movie[n];
-    
-        for (int i = 0; i < n; i++) {
-            int digit = (arr[i].getByID(col) / exp) % 10;
-            count[digit]++;
+
+        Movie[] sortedArray = new Movie[sortedList.size()];
+
+        current = sortedList.getFirst();
+        while (current != null) {
+            int index = count[current.getData().getByID(column)] - 1;
+            sortedArray[index] = current.getData();
+            count[current.getData().getByID(column)]--;
+            current = current.next;
         }
-    
-        for (int i = 1; i < 10; i++) {
-            count[i] += count[i - 1];
-        }
-    
-        for (int i = n - 1; i >= 0; i--) {
-            int digit = (arr[i].getByID(col) / exp) % 10;
-            output[count[digit] - 1] = arr[i];
-            count[digit]--;
-        }
-    
-        for (int i = 0; i < n; i++) {
-            arr[i] = output[i];
+
+        current = sortedList.getFirst();
+        for (int i = 0; i < sortedArray.length; i++) {
+            current.setData(sortedArray[i]);
+            current = current.next;
         }
     }
+
+    private void radixSort(int column, boolean increasing){
+		int m = getMax(column);
+
+		for (int exp = 1; m / exp > 0; exp *= 10){
+            countingSort(m, column, increasing);
+        }
+	}
+
+    public DoublyLinkedList<Movie> getSortedList() {
+        return sortedList;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public int getComparisons() {
+        return comparisons;
+    }
+
+    public int getSwaps() {
+        return swaps;
+    }
+
+
 }

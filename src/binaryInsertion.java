@@ -1,38 +1,86 @@
 public class binaryInsertion {
-    private long duration;
+    DoublyLinkedList<Movie> sortedList;
+    private long time;
+    private long comparisons;
+    private long swaps;
 
-    public long getDuration(){
-        return duration;
+    public binaryInsertion(DoublyLinkedList<Movie> movies, int column, boolean increasing){
+        this.sortedList = movies;
+        this.time = sort(column, increasing);
     }
 
-    public Movie[] binaryInsertionSort(Movie[] arr,int col) {
+    public long sort(int column, boolean increasing){
+
         long startTime = System.nanoTime();
-        int n = arr.length;
-        for (int i = 1; i < n; i++) {
-            Movie key = arr[i];
-            int j = binarySearch(arr, key, 0, i - 1,col);
-            if (j < i) {
-                System.arraycopy(arr, j, arr, j + 1, i - j);
-                arr[j] = key;
-            }
-        }
-        long endTime = System.nanoTime();
-        this.duration = endTime - startTime;
 
-        return arr;
+        binaryInsertionSort(sortedList, column, increasing);
+
+        long endTime = System.nanoTime();
+        return endTime - startTime;
     }
-    
-    private static int binarySearch(Movie[] arr, Movie key, int left, int right,int col) {
-        while (left <= right) {
-            int mid = (left + right) / 2;
-            if (key.getByID(col) < arr[mid].getByID(col)) {
-                right = mid - 1;
+
+    public int binarySearch(DoublyLinkedList<Movie> list, Movie item, int low, int high,int col, boolean increasing){
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (increasing == true) {
+                if (item.getByID(col) == list.index(mid).getData().getByID(col))
+                    return mid + 1;
+                else if (item.getByID(col) > list.index(mid).getData().getByID(col))
+                    low = mid + 1;
+                else
+                    high = mid - 1;
+                comparisons++;
             } else {
-                left = mid + 1;
+                if (item.getByID(col) == list.index(mid).getData().getByID(col))
+                    return mid + 1;
+                else if (item.getByID(col) < list.index(mid).getData().getByID(col))
+                    low = mid + 1;
+                else
+                    high = mid - 1;
+                comparisons++;
             }
+          
         }
-        return left;
+        return low;
     }
-   
+
+    public void binaryInsertionSort(DoublyLinkedList<Movie> list, int col, boolean increasing) {
+        int i, loc, j;
+        Movie selected;
+        int n=list.size();
     
+        for (i = 1; i < n; ++i) {
+            j = i - 1;
+
+            selected = list.index(i).getData();
+    
+
+            loc = binarySearch(list, selected, 0, j,col, increasing);
+    
+            while (j >= loc) {
+                list.index(j + 1).data = list.index(j).getData();
+                j--;
+                swaps++;
+            }
+            list.index(j + 1).data = selected;
+        }
+    }
+
+    public DoublyLinkedList<Movie> getSortedList() {
+        return sortedList;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public long getComparisons() {
+        return comparisons;
+    }
+
+    public long getSwaps() {
+        return swaps;
+    }
+
 }

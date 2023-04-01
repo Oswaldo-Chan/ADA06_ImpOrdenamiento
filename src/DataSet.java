@@ -50,40 +50,22 @@ public class DataSet {
         
     }
 
-    public static void newDataset(Movie[] dataset, String filename) {
-        BufferedWriter bw = null;
-
-        try {
-            bw = new BufferedWriter(new FileWriter(filename));
-            for (Movie objeto : dataset) {
-                
-                Movie movie = objeto;
-                bw.write(movie.getTitle() + "," + movie.getYear() + "," + movie.getScore() + "," + movie.getMetascore() 
-                + "," + movie.getGenre() + "," + movie.getVote() + "," + movie.getDirector() + "," + movie.getRuntime() + "," + movie.getRevenue());
-                bw.newLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (bw != null) bw.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
     public static void newDataset(DoublyLinkedList<Movie> dataset, String filename) {
         BufferedWriter bw = null;
 
         try {
             bw = new BufferedWriter(new FileWriter(filename));
-            while (dataset.isEmpty() == false) {
-                DoublyLink<Movie> link = dataset.deleteFirst();
+            DoublyLink<Movie> link = dataset.getFirst();
+            bw.write("title,year,score,metascore,genre,votes,director,runtime,revenue");
+            bw.newLine();
+            while(link != null) {
                 Movie movie = link.getData();
                 bw.write(movie.getTitle() + "," + movie.getYear() + "," + movie.getScore() + "," + movie.getMetascore() 
                 + "," + movie.getGenre() + "," + movie.getVote() + "," + movie.getDirector() + "," + movie.getRuntime() + "," + movie.getRevenue());
                 bw.newLine();
+                link = link.next;
             }
+         
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
