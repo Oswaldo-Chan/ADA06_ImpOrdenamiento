@@ -1,26 +1,38 @@
+import java.util.Scanner;
+
 public class MoviesApp {
     public static void main(String[] args) {
-  
-      System.out.println("Ingrese el numero de la columna a ordenar:");
-      System.out.println("1. Por Genero \n2. Por Año de lanzamiento \n3. Por Duracion \n4. Por votos \n5. Por Puntuacion \n6. Por Metascore");
-      
-      System.out.println("Ingrese el numero del tipo de orden que desea:");
-      System.out.println("1. Orden Ascendente \n2. Orden Descendente");
 
-      
-        DataSet dataset = new DataSet();
-        dataset.readCSV("dataset/movies.csv");
-        DoublyLinkedList<Movie> movies = dataset.getMovies();       
-        String str = "abc";
-        int n = str.hashCode();
-        System.out.println(n);
+        Controller control = new Controller();
+        try (Scanner scanner = new Scanner(System.in)) {
+            control.read("dataset/movies.csv");
 
-        RadixSort r1 = new RadixSort(movies, 3, false);
+            System.out.println("Ingrese el numero de la columna a ordenar:");
+            System.out.println("\n1. Por Año \n2. Por Duración en minutos \n3. Por Votos \n4. Por Metascore");
+            System.out.print("\nIngrese su opcion: ");
+            int column = Integer.parseInt(scanner.nextLine());
+            
+            System.out.println("\nIngrese el numero del tipo de orden que desea:");
+            System.out.println("\n1. Orden Ascendente \n2. Orden Descendente");
+            System.out.print("\nIngrese su opcion: ");
+            int order = Integer.parseInt(scanner.nextLine());
 
-        //MergeSort m = new MergeSort(movies, 3, false); //creciente por defecto
-        //dataset.newDataset(m.getSortedList(), "output/sortMerge.csv");
-        DataSet.newDataset(r1.getSortedList(), "output/sortRadix.csv");
-      System.out.println(r1.getTime());
-      //System.out.println(m.getTime());
-      }
+            switch (order) {
+                case 1:
+                control.order(column,true);
+                    break;
+                case 2: 
+                control.order(column, false);
+                    break;
+                default:
+                    break;
+            }
+        } catch (NumberFormatException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        control.generateTable();
+
+    }
 }

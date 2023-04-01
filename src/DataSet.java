@@ -55,14 +55,17 @@ public class DataSet {
 
         try {
             bw = new BufferedWriter(new FileWriter(filename));
-            DoublyLink<Movie> current = dataset.getFirst();
-            while (current != null) {
-                Movie movie = current.getData();
+            DoublyLink<Movie> link = dataset.getFirst();
+            bw.write("title,year,score,metascore,genre,votes,director,runtime,revenue");
+            bw.newLine();
+            while(link != null) {
+                Movie movie = link.getData();
                 bw.write(movie.getTitle() + "," + movie.getYear() + "," + movie.getScore() + "," + movie.getMetascore() 
                 + "," + movie.getGenre() + "," + movie.getVote() + "," + movie.getDirector() + "," + movie.getRuntime() + "," + movie.getRevenue());
                 bw.newLine();
-                current = current.next;
+                link = link.next;
             }
+         
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -73,4 +76,6 @@ public class DataSet {
             }
         }
     }
+
+
 }
