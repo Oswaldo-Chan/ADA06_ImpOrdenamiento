@@ -11,8 +11,6 @@ Una vez se hayan cargado los datos se le pide al controlador que los ordene, par
 
 Por ultimo la funcion crear generara el csv ordenado y la funcion generar tabla generara los datos de ejecucion de cada algoritmo.
 
-por cuestiones de tiempo y problemas con el control de versiones no se pudo documentar el codigo del proyecto :c
-
 link del repositorio: https://github.com/Oswaldo-Chan/ADA06_ImpOrdenamiento
 
 Hecho por: Oswaldo Chan y Francisco Ramos
