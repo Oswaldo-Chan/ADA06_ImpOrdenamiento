@@ -2,13 +2,13 @@
 
 ## Descripcion
 
-Programa que ordena un dataset de películas mediante los algoritmos de ordenamiento (BinaryInsertionSort, MergeSort, QuickSort y RadixSort) implementando listas doblemente ligadas.
+Este es un programa que ordena un dataset de películas mediante los algoritmos de ordenamiento (BinaryInsertionSort, MergeSort, QuickSort y RadixSort) implementando listas doblemente ligadas.
 
-El programa se ejecutará desde la clase 'MoviesApp.java', primero se deberá instanciar el controlador que permitirá todas las operaciones del programa, luego se tendrá que llamar a la función 'controlador.leer', proporcionando el nombre del archivo que contenga los datos a ordenar. Este programa únicamente puede ordenar listas de películas.
+El programa se ejecutará desde la clase 'MoviesApp.java', dentro de esta clase se pide como entrada el numero de la columna a ordenar y el tipo de orden que tendrá, dentro del código se crea un objeto de tipo ```Controller``` que permitirá todas las operaciones del programa, luego se tendrá que llamar a la función ```Controller.read``` el cual leerá el dataset.
 
-Una vez que se hayan cargado los datos se le pide al controlador que los ordene, para llamar a la funcion 'controlado.ordenar' se le tiene que proporcionar dos enteros y un boleano, el primer entero sera uno de los 4 algoritmos a ordenar, el segundo entero sera el numero de columna en la cual se base el ordenamiento y el boleano indicará si se ordena de manera ascendente o descendente.
+Una vez que se hayan cargado los datos se le pide al controlador que los ordene, para llamar a la funcion ```Controller.order``` el cual tiene dos parámetros, el primero es la columna a ordenar y el segundo es el boleano que indicará si se ordena de manera ascendente o descendente.
 
-Por ultimo la funcion crear generara el csv ordenado y la funcion generar tabla generara los datos de ejecucion de cada algoritmo.
+Por ultimo se generará el csv ordenado y la función ```Controller.generateTable``` generará las métricas de cada algoritmo.
 
 ## Uso
 
